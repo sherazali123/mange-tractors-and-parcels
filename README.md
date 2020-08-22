@@ -32,7 +32,7 @@ If (want to use docker)
   12. yarn start
   13. Review React app at http://localhost:3000/
 else
-  9. `docker-compose up`
+  9. `docker-compose up --build` (will take some time)
   10. Review Graphql schema at http://localhost:6001/graphiql
   11. Review React app at http://localhost:3000/
   
