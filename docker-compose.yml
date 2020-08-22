@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  backend:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./backend
+    depends_on:
+      - tractor-parcels-db
+    ports:
+      - 6001:6001
+    command: ['yarn', 'start:withData']
+
+    # volumes:
+    # - "./backend:/usr/src/app"
+
+    environment:
+      - NODE_ENV=localhost
+      - NODE_PORT=6001
+      - NODE_HOST=http://localhost
+      - TYPEORM_CONNECTION=postgres
+      - TYPEORM_URL=postgres://postgres:password@tractor-parcels-db/parcelsdb
+      - TYPEORM_SYNCHRONIZE=true
+      - TYPEORM_LOGGING=true
+      - TYPEORM_ENTITIES=dist/entity/**/*.js
+      - TYPEORM_ENTITIES_DIR=dist/entity
+      - TYPEORM_MIGRATIONS_TABLE_NAME=migrations
+      - TYPEORM_MIGRATIONS=dist/database/migrations/**/*.js
+      - TYPEORM_MIGRATIONS_DIR=src/database/migrations
+      - DISABLE_AUTH_ACCESS=true
+      - TOKEN_SECRET=986fghjr5h2h3cc1e1e19523fd5345fgh567FG
+
+  # Parcels DB
+  tractor-parcels-db:
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_USER=postgres
+      - POSTGRES_MULTIPLE_DATABASES=parcelsdb,parcelsdb-test
+    build:
+      context: .
+      dockerfile: Dockerfile.postgis
+    image: 'postgres:11.6-alpine'
+    volumes:
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d/
+    ports:
+      - '0.0.0.0:6432:5432'

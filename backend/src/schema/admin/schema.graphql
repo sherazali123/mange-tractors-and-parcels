@@ -1,0 +1,58 @@
+"""
+Admins to manage reports
+"""
+type Admin {
+  id: ID!
+  firstName: String!
+  lastName: String
+  fullName: String!
+  email: String!
+  contactNumber: String
+  status: Status!
+  createdAt: Datetime!
+  updatedAt: Datetime!
+}
+
+extend type Query {
+  admin(id: ID!): Admin @requireAuth
+  adminByEmail(email: String!): Admin @requireAuth
+  admins(paging: PaginatorInput!, params: AdminsFilter): AdminsPayload @requireAuth
+}
+
+extend type Mutation {
+  login(input: LoginInput!): LoginPayload
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type AdminsPayload {
+  list: [Admin!]
+  paging: PaginatorOutput
+}
+
+input AdminsFilter {
+  searchText: String
+  status: Status
+}
+
+type SaveAdminPayloadData {
+  admin: Admin!
+}
+
+type LoginPayload {
+  token: String
+  data: SaveAdminPayloadData
+  error: AdminError
+  errors: [AdminError!]
+  errorMessage: String
+}
+
+enum AdminError {
+  DUPLICATE_EMAIL
+  INVALID_ID
+  DUPLICATE_CONTACT_NUMBER
+  INVALID_CREDENTIALS
+}

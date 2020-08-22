@@ -1,0 +1,73 @@
+"""
+Storing information about Processing a Parcel. The process is as follows:
+"""
+type TractorParcel {
+  id: ID!
+  name: String!
+  tractor: Tractor!
+  parcel: Parcel!
+  area: String!
+  processOn: Date!
+  """
+  The longitude and latitude component of the geo coordinates for this area, in degrees
+  """
+  geoLocation: GeoLocation!
+  createdAt: Datetime!
+  updatedAt: Datetime!
+}
+
+extend type Query {
+  tractorParcel(id: ID!): TractorParcel @requireAuth
+  processedParcels(paging: PaginatorInput!, params: TractorParcelsFilter): TractorParcelsPayload @requireAuth
+}
+
+extend type Mutation {
+  saveTractorParcel(input: SaveTractorParcelInput!): SaveTractorParcelPayload @requireAuth
+}
+
+type TractorParcelsPayload {
+  list: [TractorParcel!]
+  paging: PaginatorOutput
+}
+
+input TractorParcelsFilter {
+  parcelName: String
+  culture: String
+  date: Date
+  tractorName: String
+}
+
+input SaveTractorParcelInput {
+  id: ID
+  tractorId: ID!
+  parcelId: ID!
+  area: String!
+  processOn: Date!
+  """
+  The longitude component of the geo coordinates for this area, in degrees
+  """
+  longitude: Float!
+  """
+  The latitude component of the geo coordinates for this area, in degrees
+  """
+  latitude: Float!
+}
+
+type SaveTractorParcelPayload {
+  data: SaveTractorParcelPayloadData
+  error: TractorParcelError
+  errors: [TractorParcelError!]
+  errorMessage: String
+}
+
+type SaveTractorParcelPayloadData {
+  tractorParcel: TractorParcel!
+}
+
+enum TractorParcelError {
+  INVALID_ID
+  INVALID_TRACTOR_ID
+  INVALID_PARCEL_ID
+  OUT_OF_RANGE
+  ALREADY_PROCESSED
+}
