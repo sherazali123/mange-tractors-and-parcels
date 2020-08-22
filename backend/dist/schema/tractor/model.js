@@ -84,13 +84,16 @@ var Tractor = (function (_super) {
         }
         return this.repository.find({ where: { id: typeorm_2.In(ids) } });
     };
+    Tractor.prototype.getActive = function () {
+        return this.repository.find({ order: { name: 'ASC' } });
+    };
     Tractor.prototype.getAll = function (paging, params) {
         return __awaiter(this, void 0, void 0, function () {
             var query;
             return __generator(this, function (_a) {
                 query = this.repository.createQueryBuilder();
                 query = this.resolveParamsToFilters(query, params);
-                query = this.sort(query, [{ field: 'createdAt', order: 'DESC' }]);
+                query = this.sort(query, [{ field: 'updatedAt', order: 'DESC' }]);
                 return [2, this.paginator(query, paging)];
             });
         });

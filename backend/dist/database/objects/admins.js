@@ -11,6 +11,7 @@ var __assign = (this && this.__assign) || function () {
     return __assign.apply(this, arguments);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.admins = void 0;
 var util_1 = require("../../component/lib/util");
 var enums_1 = require("./../../entity/root/enums");
 exports.admins = function (defaultUser) { return [

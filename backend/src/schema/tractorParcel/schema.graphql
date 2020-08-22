@@ -19,6 +19,7 @@ type TractorParcel {
 extend type Query {
   tractorParcel(id: ID!): TractorParcel @requireAuth
   processedParcels(paging: PaginatorInput!, params: TractorParcelsFilter): TractorParcelsPayload @requireAuth
+  getActiveTractorsAndParcels: ActiveTractorsAndParcelsPayload @requireAuth
 }
 
 extend type Mutation {
@@ -28,6 +29,11 @@ extend type Mutation {
 type TractorParcelsPayload {
   list: [TractorParcel!]
   paging: PaginatorOutput
+}
+
+type ActiveTractorsAndParcelsPayload {
+  tractors: [Tractor!]
+  parcels: [Parcel!]
 }
 
 input TractorParcelsFilter {

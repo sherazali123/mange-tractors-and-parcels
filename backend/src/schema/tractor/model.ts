@@ -16,6 +16,7 @@ import { PaginatorInput, Validator as ValidatorInterface } from '../../interface
 import { Connection, Raw } from 'typeorm';
 import { isEmpty } from 'lodash';
 import { In, EntityManager } from 'typeorm';
+import { Status } from '../../entity/root/enums';
 
 export default class Tractor extends BaseModel {
   repository: any;
@@ -47,12 +48,16 @@ export default class Tractor extends BaseModel {
     return this.repository.find({ where: { id: In(ids) } });
   }
 
+  getActive(): Promise<Tractor[]> {
+    return this.repository.find({ order: { name: 'ASC' } });
+  }
+
   async getAll(paging: PaginatorInput, params: Params) {
     let query = this.repository.createQueryBuilder();
 
     query = this.resolveParamsToFilters(query, params);
 
-    query = this.sort(query, [{ field: 'createdAt', order: 'DESC' }]);
+    query = this.sort(query, [{ field: 'updatedAt', order: 'DESC' }]);
 
     return this.paginator(query, paging);
   }

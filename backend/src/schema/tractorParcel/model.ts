@@ -66,6 +66,12 @@ export default class TractorParcel extends BaseModel {
     return this.repository.find({ where: { id: In(ids) } });
   }
 
+  async getActiveTractorsAndParcels() {
+    const tractors = await this.context.tractor.getActive();
+    const parcels = await this.context.parcel.getActive();
+    return { tractors, parcels };
+  }
+
   async processedParcels(paging: PaginatorInput, params: Params) {
     let query = this.repository.createQueryBuilder('tractorParcel');
 
@@ -75,7 +81,7 @@ export default class TractorParcel extends BaseModel {
 
     query = this.resolveParamsToFilters(query, params);
 
-    query.orderBy('tractorParcel.createdAt', 'DESC');
+    query.orderBy('tractorParcel.updatedAt', 'DESC');
 
     return this.paginator(query, paging);
   }

@@ -22,6 +22,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.TractorParcel = void 0;
 var typeorm_1 = require("typeorm");
 var class_validator_1 = require("class-validator");
 var Tractor_1 = require("./Tractor");

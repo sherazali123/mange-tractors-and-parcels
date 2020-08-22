@@ -20,6 +20,9 @@ exports.default = {
             var paging = _a.paging, params = _a.params;
             return context.tractorParcel.processedParcels(paging, params);
         },
+        getActiveTractorsAndParcels: function (_root, _args, context) {
+            return context.tractorParcel.getActiveTractorsAndParcels();
+        },
     },
     Mutation: {
         saveTractorParcel: function (_root, _a, context) {

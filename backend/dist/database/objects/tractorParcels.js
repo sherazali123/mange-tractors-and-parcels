@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.tractorParcels = void 0;
 var uuid_1 = require("uuid");
 var moment_1 = __importDefault(require("moment"));
 exports.tractorParcels = function (tractors, parcels) {
@@ -10,7 +11,7 @@ exports.tractorParcels = function (tractors, parcels) {
     var startProcessingFromDate = moment_1.default().subtract(20, 'days');
     for (var i = 0; i < tractors.length; i++) {
         var tractorId = tractors[0].id;
-        var processParcels = 20;
+        var processParcels = 10;
         if (parcels.length <= 0) {
             break;
         }

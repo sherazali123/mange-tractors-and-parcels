@@ -5,7 +5,7 @@ import { cryptoRandomString } from './../../component/lib/util';
 
 export const tractors = (): TractorInterface[] => {
   const data: TractorInterface[] = [];
-  for (let i = 0; i < 30; i++) {
+  for (let i = 0; i < 5; i++) {
     data.push({
       id: uuidv4(),
       name: 'Tractor' + ' - ' + cryptoRandomString(8),

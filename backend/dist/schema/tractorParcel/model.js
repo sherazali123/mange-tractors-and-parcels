@@ -94,6 +94,22 @@ var TractorParcel = (function (_super) {
         }
         return this.repository.find({ where: { id: typeorm_1.In(ids) } });
     };
+    TractorParcel.prototype.getActiveTractorsAndParcels = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var tractors, parcels;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4, this.context.tractor.getActive()];
+                    case 1:
+                        tractors = _a.sent();
+                        return [4, this.context.parcel.getActive()];
+                    case 2:
+                        parcels = _a.sent();
+                        return [2, { tractors: tractors, parcels: parcels }];
+                }
+            });
+        });
+    };
     TractorParcel.prototype.processedParcels = function (paging, params) {
         return __awaiter(this, void 0, void 0, function () {
             var query;
@@ -102,7 +118,7 @@ var TractorParcel = (function (_super) {
                 query.innerJoin('tractorParcel.tractor', 'tractor');
                 query.innerJoin('tractorParcel.parcel', 'parcel');
                 query = this.resolveParamsToFilters(query, params);
-                query.orderBy('tractorParcel.createdAt', 'DESC');
+                query.orderBy('tractorParcel.updatedAt', 'DESC');
                 return [2, this.paginator(query, paging)];
             });
         });

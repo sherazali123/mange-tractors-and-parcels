@@ -8,6 +8,7 @@ import { Parcel as ParcelEntity } from '../../entity/Parcel';
 import { ParcelError } from './enum';
 import { createLoaders } from './loaders';
 import Context from '../context';
+import { Status } from '../../entity/root/enums';
 
 // Interfaces
 import { Parcel as ParcelInterface, Params, SaveParcelPayload } from '../../interfaces/parcel';
@@ -51,12 +52,16 @@ export default class Parcel extends BaseModel {
     return this.repository.find({ where: { id: In(ids) } });
   }
 
+  getActive(): Promise<Parcel[]> {
+    return this.repository.find({ order: { name: 'ASC' } });
+  }
+
   async getAll(paging: PaginatorInput, params: Params) {
     let query = this.repository.createQueryBuilder();
 
     query = this.resolveParamsToFilters(query, params);
 
-    query = this.sort(query, [{ field: 'createdAt', order: 'DESC' }]);
+    query = this.sort(query, [{ field: 'updatedAt', order: 'DESC' }]);
 
     return this.paginator(query, paging);
   }

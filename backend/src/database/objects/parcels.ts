@@ -6,7 +6,7 @@ import { cryptoRandomString } from '../../component/lib/util';
 
 export const parcels = (): ParcelInterface[] => {
   const data: ParcelInterface[] = [];
-  for (let i = 0; i < 500; i++) {
+  for (let i = 0; i < 50; i++) {
     const address = faker.address;
     data.push({
       id: uuidv4(),

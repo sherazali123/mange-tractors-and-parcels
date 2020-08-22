@@ -12,8 +12,8 @@ services:
       - 6001:6001
     command: ['yarn', 'start:withData']
 
-    # volumes:
-    # - "./backend:/usr/src/app"
+    volumes:
+      - './backend:/usr/src/app'
 
     environment:
       - NODE_ENV=localhost

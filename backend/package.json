@@ -1,5 +1,5 @@
 {
-  "name": "vendor-service",
+  "name": "backend-service",
   "version": "1.0.6",
   "description": "Awesome project developed with TypeORM..",
   "license": "MIT",

@@ -13,7 +13,7 @@ export const tractorParcels = (tractors: Tractor[], parcels: any): TractorParcel
     const tractorId = tractors[0].id;
 
     // apply number of parcels to current tractor
-    const processParcels = 20;
+    const processParcels = 10;
     if (parcels.length <= 0) {
       break;
     }

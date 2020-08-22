@@ -19,6 +19,9 @@ export default {
     processedParcels(_root: TractorParcel, { paging, params }: TractorParcelFilters, context: Context) {
       return context.tractorParcel.processedParcels(paging, params);
     },
+    getActiveTractorsAndParcels(_root: TractorParcel, _args: any, context: Context) {
+      return context.tractorParcel.getActiveTractorsAndParcels();
+    },
   },
   Mutation: {
     saveTractorParcel(_root: TractorParcel, { input }: { input: TractorParcel }, context: Context) {
