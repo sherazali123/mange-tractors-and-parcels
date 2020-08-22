@@ -19,7 +19,7 @@ export const GET_TRACTOR = gql`
 
 export const GET_TRACTORS = gql`
   query tractors {
-    tractors(paging: {page: 1, limit: 10}) {
+    tractors(paging: {page: 1, limit: 5000}) {
       paging {
         page
         limit

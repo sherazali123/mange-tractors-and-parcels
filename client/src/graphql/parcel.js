@@ -25,7 +25,7 @@ export const GET_PARCEL = gql`
 
 export const GET_PARCELS = gql`
   query parcels {
-    parcels(paging: {page: 1, limit: 10}) {
+    parcels(paging: {page: 1, limit: 5000}) {
       paging {
         page
         limit

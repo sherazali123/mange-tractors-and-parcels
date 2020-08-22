@@ -27,6 +27,7 @@ export const GET_TRACTOR_PARCEL = gql`
       parcel {
         id
         name
+        culture
       }
       geoLocation {
         type
@@ -45,8 +46,8 @@ export const GET_TRACTOR_PARCEL = gql`
 `;
 
 export const GET_TRACTOR_PARCELS = gql`
-  query processedParcels {
-    processedParcels(paging: {page: 1, limit: 10}) {
+  query processedParcels($params: TractorParcelsFilter) {
+    processedParcels(paging: {page: 1, limit: 5000}, params: $params) {
       paging {
         page
         limit
@@ -62,6 +63,7 @@ export const GET_TRACTOR_PARCELS = gql`
         parcel {
           id
           name
+          culture
         }
         geoLocation {
           type
