@@ -14,7 +14,6 @@ services:
 
     volumes:
       - './backend:/usr/src/app'
-
     environment:
       - NODE_ENV=localhost
       - NODE_PORT=6001
@@ -28,9 +27,24 @@ services:
       - TYPEORM_MIGRATIONS_TABLE_NAME=migrations
       - TYPEORM_MIGRATIONS=dist/database/migrations/**/*.js
       - TYPEORM_MIGRATIONS_DIR=src/database/migrations
-      - DISABLE_AUTH_ACCESS=true
+      - DISABLE_AUTH_ACCESS=false
       - TOKEN_SECRET=986fghjr5h2h3cc1e1e19523fd5345fgh567FG
-
+  frontend:
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./client
+    depends_on:
+      - tractor-parcels-db
+      - backend
+    ports:
+      - 6002:3000
+    # command: ['yarn', 'start']
+    command: dockerize -wait http://backend:6001/graphql -timeout 20s yarn start
+    volumes:
+      - './frontend:/usr/src/app'
+    environment:
+      - GRAPHQL_URL=http://localhost:6001/graphql
   # Parcels DB
   tractor-parcels-db:
     environment:

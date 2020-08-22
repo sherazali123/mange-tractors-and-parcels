@@ -9,7 +9,7 @@ import { AdminError } from './enum';
 import { createLoaders } from './loaders';
 import { createPasswordFromString, generateAccessToken } from '../../component/lib/util';
 import Context from './../context';
-
+import jwt from 'jsonwebtoken';
 // Interfaces
 import { Admin as AdminInterface, Params, LoginResponse, LoginForm } from './../../interfaces/admin';
 import { PaginatorInput, Validator as ValidatorInterface } from './../../interfaces';
@@ -18,6 +18,7 @@ import { Connection } from 'typeorm';
 import { isEmpty } from 'lodash';
 import bcrypt from 'bcryptjs';
 import { In, EntityManager } from 'typeorm';
+import config from './../../config';
 
 export default class Admin extends BaseModel {
   repository: any;
@@ -49,6 +50,22 @@ export default class Admin extends BaseModel {
       return [];
     }
     return this.repository.find({ where: { id: In(ids) } });
+  }
+
+  async getByToken(token: string) {
+    if (token) {
+      let decoded: any = jwt.verify(token, config.tokenSecret);
+
+      if (decoded) {
+        try {
+          if (decoded.id) {
+            return this.getById(decoded.id);
+          }
+        } catch (error) {
+          throw error;
+        }
+      }
+    }
   }
 
   async getAll(paging: PaginatorInput, params: Params) {

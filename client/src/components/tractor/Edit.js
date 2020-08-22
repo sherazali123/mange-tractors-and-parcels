@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {Query, Mutation} from 'react-apollo';
 import {GET_TRACTOR, SAVE_TRACTOR, GET_TRACTORS} from './../../graphql/tractor';
-import {ValidateForm, Constants} from './../ ValidateForm';
+import {ValidateForm, Constants} from '../ValidateForm';
 
 class Edit extends Component {
   constructor(props) {
@@ -59,7 +59,9 @@ class Edit extends Component {
       >
         {({loading, error, data}) => {
           if (loading) return 'Loading...';
-          if (error) return `Error! ${error.message}`;
+          if (error) {
+            return <div className="container">Error! ${error.message}</div>;
+          }
           const {enumValues: statues} = data.__type;
           const {errors} = this.state;
           return (

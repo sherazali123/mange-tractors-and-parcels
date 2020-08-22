@@ -16,12 +16,15 @@ import TractorParcelList from './components/tractorParcel/List';
 import TractorParcelEdit from './components/tractorParcel/Edit';
 import TractorParcelCreate from './components/tractorParcel/Create';
 
+import Login from './components/Login';
+
 function App() {
   return (
     <div>
       <Router>
         <NavBar />
-        <Route exact path="/" component={Home} />
+        <Route exact path="/" component={Login} />
+        <Route path="/dashboard" component={Home} />
         <Route path="/tractors" component={TractorList} />
         <Route path="/tractor/edit/:id" component={TractorEdit} />
         <Route path="/tractor/create" component={TractorCreate} />

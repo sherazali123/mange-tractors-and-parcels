@@ -9,8 +9,8 @@ export default {
     },
   },
   Query: {
-    admin(root: Admin, { id }: Admin, context: Context) {
-      return context.admin.getById(id);
+    admin(root: Admin, { token }: { token: string }, context: Context) {
+      return context.admin.getByToken(token);
     },
     adminByEmail(root: Admin, { email }: Admin, context: Context) {
       return context.admin.loaders.getByEmail.load(email);

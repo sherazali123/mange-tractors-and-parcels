@@ -14,7 +14,7 @@ type Admin {
 }
 
 extend type Query {
-  admin(id: ID!): Admin @requireAuth
+  admin(token: String): Admin
   adminByEmail(email: String!): Admin @requireAuth
   admins(paging: PaginatorInput!, params: AdminsFilter): AdminsPayload @requireAuth
 }

@@ -11,7 +11,9 @@ class Create extends Component {
       <Query query={GET_TRACTORS}>
         {({loading, error, data}) => {
           if (loading) return 'Loading...';
-          if (error) return `Error! ${error.message}`;
+          if (error) {
+            return <div className="container">Error! ${error.message}</div>;
+          }
           return (
             <div className="container">
               <div className="panel panel-default">

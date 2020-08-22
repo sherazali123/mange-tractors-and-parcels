@@ -57,9 +57,11 @@ var Admin_1 = require("../../entity/Admin");
 var enum_1 = require("./enum");
 var loaders_1 = require("./loaders");
 var util_1 = require("../../component/lib/util");
+var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 var lodash_1 = require("lodash");
 var bcryptjs_1 = __importDefault(require("bcryptjs"));
 var typeorm_1 = require("typeorm");
+var config_1 = __importDefault(require("./../../config"));
 var Admin = (function (_super) {
     __extends(Admin, _super);
     function Admin(connection, context) {
@@ -84,6 +86,27 @@ var Admin = (function (_super) {
             return [];
         }
         return this.repository.find({ where: { id: typeorm_1.In(ids) } });
+    };
+    Admin.prototype.getByToken = function (token) {
+        return __awaiter(this, void 0, void 0, function () {
+            var decoded;
+            return __generator(this, function (_a) {
+                if (token) {
+                    decoded = jsonwebtoken_1.default.verify(token, config_1.default.tokenSecret);
+                    if (decoded) {
+                        try {
+                            if (decoded.id) {
+                                return [2, this.getById(decoded.id)];
+                            }
+                        }
+                        catch (error) {
+                            throw error;
+                        }
+                    }
+                }
+                return [2];
+            });
+        });
     };
     Admin.prototype.getAll = function (paging, params) {
         return __awaiter(this, void 0, void 0, function () {

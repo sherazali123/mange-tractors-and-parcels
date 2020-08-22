@@ -9,7 +9,7 @@ import {
   GET_TRACTORS_AND_PARCEL,
   GET_TRACTOR_PARCELS,
 } from './../../graphql/tractorParcel';
-import {ValidateForm, Constants} from './../ ValidateForm';
+import {ValidateForm, Constants} from '../ValidateForm';
 
 class Edit extends Component {
   constructor(props) {
@@ -86,7 +86,9 @@ class Edit extends Component {
       <Query query={GET_TRACTORS_AND_PARCEL}>
         {({loading, error, data}) => {
           if (loading) return 'Loading...';
-          if (error) return `Error! ${error.message}`;
+          if (error) {
+            return <div className="container">Error! ${error.message}</div>;
+          }
 
           const {tractors, parcels} = data.getActiveTractorsAndParcels;
           return (
@@ -107,7 +109,11 @@ class Edit extends Component {
             >
               {({loading, error, data}) => {
                 if (loading) return 'Loading...';
-                if (error) return `Error! ${error.message}`;
+                if (error) {
+                  return (
+                    <div className="container">Error! ${error.message}</div>
+                  );
+                }
                 const {errors} = this.state;
                 return (
                   <Mutation

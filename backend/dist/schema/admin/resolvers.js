@@ -9,8 +9,8 @@ exports.default = {
     },
     Query: {
         admin: function (root, _a, context) {
-            var id = _a.id;
-            return context.admin.getById(id);
+            var token = _a.token;
+            return context.admin.getByToken(token);
         },
         adminByEmail: function (root, _a, context) {
             var email = _a.email;
