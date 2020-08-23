@@ -36,4 +36,6 @@ else
   10. Review Graphql schema at http://localhost:6001/graphiql
   11. Review React app at http://localhost:3000/
   
+14. Connect Postgres: postgres://postgres:password@127.0.0.1:6432/parcelsdb
+  
 Test user: sheraz.ali342@gmail.com/123456
