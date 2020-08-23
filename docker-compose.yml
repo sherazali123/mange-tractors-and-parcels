@@ -39,10 +39,11 @@ services:
       - backend
     ports:
       - 3000:3000
+    stdin_open: true
     # command: ['yarn', 'start']
-    # command: dockerize -wait http://backend:6001/graphql -timeout 20s yarn start
+    command: dockerize -wait http://backend:6001/health -timeout 20s yarn start
     volumes:
-      - './frontend:/usr/src/app'
+      - './client:/usr/src/app'
     environment:
       - GRAPHQL_URL=http://localhost:6001/graphql
   # Parcels DB

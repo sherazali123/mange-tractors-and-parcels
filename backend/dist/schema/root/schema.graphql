@@ -1,0 +1,39 @@
+directive @requireAuth on FIELD_DEFINITION
+
+schema {
+  mutation: Mutation
+  query: Query
+}
+
+"""
+An iso 8601 date-time string
+"""
+scalar Datetime
+
+"""
+A day in format 'yyyy-mm-dd'
+"""
+scalar Date
+
+"""
+An 24-hour time expressed as an hour/minute pair in local time, i.e. '18:00'
+"""
+scalar LocalTime
+
+"""
+Scalar used to describe currency amounts. Serialized as a string to retain decimal precision.
+"""
+scalar CurrencyValue
+
+"""
+Paginator
+"""
+input PaginatorInput {
+  page: Int!
+  limit: Int!
+}
+type PaginatorOutput {
+  page: Int!
+  limit: Int!
+  totalPages: Int!
+}
