@@ -6,7 +6,6 @@
 * **Postgres** 11.6 or later.
 * **PostGIS** 2.4.2 or later. 
 * **React** 16.13.1 or later.
-* **React** 16.13.1 or later.
 * **Docker** 19.03.8.
 
 
