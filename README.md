@@ -22,20 +22,20 @@
 8. `cd ..`
 
 If (want to use docker)
-  9. cd backend
-  10. yarn start or yarn start:withData
-  11. Review Graphql schema at http://localhost:6001/graphiql
+9. `cd backend`
+10. `yarn start or yarn start:withData`
+11. `Review Graphql schema at http://localhost:6001/graphiql`
 
-  Open new tab
+Open new tab
 
-  11. cd client
-  12. yarn start
-  13. Review React app at http://localhost:3000/
+11. `cd client`
+12. `yarn start`
+13. Review React app at http://localhost:3000/
 else
-  9. `docker-compose up --build` (will take some time)
-  10. Review Graphql schema at http://localhost:6001/graphiql
-  11. Review React app at http://localhost:3000/
+9. `docker-compose up --build` (will take some time)
+10. Review Graphql schema at http://localhost:6001/graphiql
+11. Review React app at http://localhost:3000/
   
-14. Connect Postgres: postgres://postgres:password@127.0.0.1:6432/parcelsdb
+Connect Postgres: postgres://postgres:password@127.0.0.1:6432/parcelsdb
   
 Test user: sheraz.ali342@gmail.com/123456
