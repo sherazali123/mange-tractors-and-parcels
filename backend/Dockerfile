@@ -10,6 +10,7 @@ WORKDIR /usr/src/app
 # A wildcard is used to ensure both package.json AND yarn.lock are copied
 COPY package*.json yarn.lock* ./
 
+RUN yarn cache clean
 RUN yarn
 # If you are building your code for production
 # RUN yarn --only=production

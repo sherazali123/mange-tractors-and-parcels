@@ -38,9 +38,9 @@ services:
       - tractor-parcels-db
       - backend
     ports:
-      - 6002:3000
+      - 3000:3000
     # command: ['yarn', 'start']
-    command: dockerize -wait http://backend:6001/graphql -timeout 20s yarn start
+    # command: dockerize -wait http://backend:6001/graphql -timeout 20s yarn start
     volumes:
       - './frontend:/usr/src/app'
     environment:
