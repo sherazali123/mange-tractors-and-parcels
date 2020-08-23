@@ -5,6 +5,7 @@
 * **Node** => 12.16.3
 * **Postgres** 11.6 or later.
 * **PostGIS** 2.4.2 or later. 
+* **TypeOrm** 0.2.24.
 * **React** 16.13.1 or later.
 * **Docker** 19.03.8.
 
