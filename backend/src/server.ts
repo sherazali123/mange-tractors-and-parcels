@@ -43,7 +43,7 @@ const startServer = async (): Promise<void> => {
     console.log('CreateConnection:Error: ', error);
   }
 
-  app.listen({ port: server.port }, () => console.log(`Server ready at ${server.host}:${server.port}`));
+  app.listen({ port: server.port }, () => console.log(`Server ready at ${server.host}:${server.port}/graphql`));
 };
 
 startServer();
