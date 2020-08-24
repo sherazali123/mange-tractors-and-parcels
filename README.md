@@ -20,18 +20,6 @@
 6. `cd client`
 7. `yarn`
 8. `cd ..`
-
-If (want to use docker)
-9. `cd backend`
-10. `yarn start or yarn start:withData`
-11. `Review Graphql schema at http://localhost:6001/graphiql`
-
-Open new tab
-
-11. `cd client`
-12. `yarn start`
-13. Review React app at http://localhost:3000/
-else
 9. `docker-compose up --build` (will take some time)
 10. Review Graphql schema at http://localhost:6001/graphiql
 11. Review React app at http://localhost:3000/
